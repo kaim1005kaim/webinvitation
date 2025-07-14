@@ -1,31 +1,23 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 interface HeroSectionProps {
-  names: {
-    bride: string
-    groom: string
-  }
+  names: string
   date: string
-  tagline: string
   bgImage?: string
 }
 
-export default function HeroSection({ names, date, tagline, bgImage }: HeroSectionProps) {
+export default function HeroSection({ names, date, bgImage }: HeroSectionProps) {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {bgImage && (
         <div className="absolute inset-0">
-          <Image
+          <img
             src={bgImage}
             alt="Hero background"
-            fill
-            className="object-cover"
-            priority
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/30" />
         </div>
       )}
       
@@ -34,16 +26,17 @@ export default function HeroSection({ names, date, tagline, bgImage }: HeroSecti
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary/80" />
       )}
       
-      <div className="relative z-10 flex h-full items-center justify-center text-center text-white">
+      <div className="relative z-10 flex h-full items-center justify-center text-center text-white pt-96">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="mb-8 -mt-12"
           >
-            <h1 className="mb-4 text-5xl md:text-7xl font-bold">
-              {names.groom} & {names.bride}
-            </h1>
+            <h2 className="text-4xl md:text-5xl font-serif tracking-widest mb-6 text-shadow-lg">
+              INVITATION
+            </h2>
           </motion.div>
           
           <motion.div
@@ -51,7 +44,9 @@ export default function HeroSection({ names, date, tagline, bgImage }: HeroSecti
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="mb-6 text-xl md:text-2xl">{tagline}</p>
+            <h1 className="mb-6 text-5xl md:text-7xl font-serif text-shadow-lg">
+              {names}
+            </h1>
           </motion.div>
           
           <motion.div
@@ -59,7 +54,7 @@ export default function HeroSection({ names, date, tagline, bgImage }: HeroSecti
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="text-2xl md:text-3xl font-serif">{date}</p>
+            <p className="text-2xl md:text-4xl font-serif text-shadow-lg">{date}</p>
           </motion.div>
           
           <motion.div

@@ -20,7 +20,7 @@ export default function RsvpForm() {
   } = useForm<RSVPFormData>({
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
-      attendance: true,
+      attendance: 'both' as const,
       guests: 0
     }
   })
@@ -63,10 +63,9 @@ export default function RsvpForm() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4">
-            RSVP
+          <h2 className="text-4xl md:text-5xl font-serif text-primary">
+            出欠のご連絡
           </h2>
-          <p className="text-lg text-gray-600">出欠のご連絡</p>
         </motion.div>
 
         <motion.div
@@ -104,6 +103,51 @@ export default function RsvpForm() {
               className="bg-white rounded-lg shadow-lg p-8"
             >
               <div className="space-y-6">
+                {/* Attendance */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    出欠 <span className="text-red-500">*</span>
+                  </label>
+                  <div className="space-y-2">
+                    <label className="flex items-center">
+                      <input
+                        {...register('attendance')}
+                        type="radio"
+                        value="both"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>出席（両部）</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        {...register('attendance')}
+                        type="radio"
+                        value="part1"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>出席（1部）</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        {...register('attendance')}
+                        type="radio"
+                        value="part2"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>出席（2部）</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        {...register('attendance')}
+                        type="radio"
+                        value="absent"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>欠席</span>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -138,35 +182,8 @@ export default function RsvpForm() {
                   )}
                 </div>
 
-                {/* Attendance */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    出欠 <span className="text-red-500">*</span>
-                  </label>
-                  <div className="flex space-x-4">
-                    <label className="flex items-center">
-                      <input
-                        {...register('attendance')}
-                        type="radio"
-                        value="true"
-                        className="mr-2 text-primary focus:ring-primary"
-                      />
-                      <span>出席</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        {...register('attendance')}
-                        type="radio"
-                        value="false"
-                        className="mr-2 text-primary focus:ring-primary"
-                      />
-                      <span>欠席</span>
-                    </label>
-                  </div>
-                </div>
-
                 {/* Guests (only show if attending) */}
-                {attendance && (
+                {attendance !== 'absent' && (
                   <div>
                     <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-2">
                       同行者数
@@ -187,10 +204,10 @@ export default function RsvpForm() {
                 )}
 
                 {/* Allergy */}
-                {attendance && (
+                {attendance !== 'absent' && (
                   <div>
                     <label htmlFor="allergy" className="block text-sm font-medium text-gray-700 mb-2">
-                      食物アレルギー・制限事項
+                      食物アレルギー / 制限事項
                     </label>
                     <textarea
                       {...register('allergy')}

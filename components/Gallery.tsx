@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 
 interface Photo {
   src: string
@@ -59,12 +58,10 @@ export default function Gallery({ photos, story }: GalleryProps) {
               className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
               onClick={() => setSelectedImage(index)}
             >
-              <Image
+              <img
                 src={photo.src}
                 alt={photo.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             </motion.div>
@@ -88,12 +85,10 @@ export default function Gallery({ photos, story }: GalleryProps) {
                 className="relative max-w-4xl max-h-[90vh]"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Image
+                <img
                   src={photos[selectedImage].src}
                   alt={photos[selectedImage].alt}
-                  width={1200}
-                  height={800}
-                  className="object-contain max-h-[85vh] w-auto"
+                  className="object-contain max-h-[85vh] w-auto max-w-full"
                 />
                 {photos[selectedImage].caption && (
                   <p className="text-white text-center mt-4">

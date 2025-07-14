@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       .insert({
         name: validatedData.name,
         email: validatedData.email,
-        attendance_type: validatedData.attendance,
+        attendance: validatedData.attendance,
         guests: validatedData.guests,
         allergy: validatedData.allergy || null,
         message: validatedData.message || null,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface Photo {
@@ -16,6 +16,26 @@ interface GalleryProps {
 
 export default function Gallery({ photos, story }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % photos.length)
+      }, 2000) // 2秒ごとに切り替え
+      return () => clearInterval(interval)
+    }
+  }, [isMobile, photos.length])
 
   return (
     <section className="section-padding bg-white">
@@ -41,32 +61,75 @@ export default function Gallery({ photos, story }: GalleryProps) {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto mb-12 text-center"
           >
-            <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg">
               {story}
             </p>
           </motion.div>
         )}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {photos.map((photo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
-              onClick={() => setSelectedImage(index)}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-            </motion.div>
-          ))}
-        </div>
+        {/* モバイル用スライドショー */}
+        {isMobile ? (
+          <div className="relative w-full max-w-md mx-auto">
+            <div className="relative aspect-square overflow-hidden rounded-2xl shadow-xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -300 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={photos[currentSlide].src}
+                    alt={photos[currentSlide].alt}
+                    className="w-full h-full object-cover"
+                  />
+                  {photos[currentSlide].caption && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                      <p className="text-white text-sm font-serif">{photos[currentSlide].caption}</p>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            {/* インジケーター */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {photos.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide ? 'bg-primary w-8' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* デスクトップ用グリッド */
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {photos.map((photo, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
+                onClick={() => setSelectedImage(index)}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Lightbox */}
         <AnimatePresence>

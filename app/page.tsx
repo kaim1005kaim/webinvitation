@@ -36,11 +36,11 @@ export default function Home() {
 
   const scheduleData = [
     { time: '12:30', label: '受付開始 (1部)' },
-    { time: '13:00', label: '1部 開宴' },
-    { time: '15:30', label: '1部 お開き' },
+    { time: '13:00', label: '1部 開始' },
+    { time: '15:30', label: '1部 終了' },
     { time: '16:30', label: '受付開始 (2部)' },
     { time: '17:00', label: '2部 開始' },
-    { time: '19:00', label: '2部 終了予定' }
+    { time: '19:00', label: '2部 終了' }
   ]
 
   const galleryData = {

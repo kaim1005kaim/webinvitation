@@ -32,7 +32,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
     if (isMobile) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % photos.length)
-      }, 2000) // 2秒ごとに切り替え
+      }, 4000) // 4秒ごとに切り替え
       return () => clearInterval(interval)
     }
   }, [isMobile, photos.length])

@@ -11,14 +11,6 @@ export default function Footer({ copyright }: FooterProps) {
     <footer className="bg-primary text-white">
       <div className="container mx-auto section-padding">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-serif mb-6">当日お会いできることを楽しみにしています！</h3>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

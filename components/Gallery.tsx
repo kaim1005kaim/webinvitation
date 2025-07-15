@@ -18,8 +18,10 @@ export default function Gallery({ photos, story }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
@@ -68,7 +70,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
         )}
 
         {/* モバイル用スライドショー */}
-        {isMobile ? (
+        {isClient && isMobile ? (
           <div className="relative w-full max-w-md mx-auto">
             <div className="relative aspect-square overflow-hidden rounded-2xl shadow-xl">
               <AnimatePresence mode="wait">

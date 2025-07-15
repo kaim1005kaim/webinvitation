@@ -87,11 +87,6 @@ export default function Gallery({ photos, story }: GalleryProps) {
                     alt={photos[currentSlide].alt}
                     className="w-full h-full object-cover"
                   />
-                  {photos[currentSlide].caption && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                      <p className="text-white text-sm font-serif">{photos[currentSlide].caption}</p>
-                    </div>
-                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

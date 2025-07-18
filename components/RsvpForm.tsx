@@ -81,7 +81,7 @@ export default function RsvpForm() {
         >
           <div className="bg-red-50 border-2 border-red-400 rounded-lg p-4 max-w-md mx-auto">
             <p className="text-red-700 font-bold text-lg">
-              ⚠️ ご回答期限：2025年10月31日（金）
+              ⚠️ ご回答期限：2025年10月23日（木）
             </p>
             <p className="text-red-600 text-sm mt-1">
               恐れ入りますが、上記期限までにご回答をお願いいたします

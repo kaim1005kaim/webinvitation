@@ -154,8 +154,8 @@ export default function Gallery({ photos, story }: GalleryProps) {
             </div>
           </div>
         ) : (
-          /* デスクトップ用グリッド */
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          /* デスクトップ用グリッド（インスタグラム風） */
+          <div className="grid grid-cols-3 gap-1 max-w-lg mx-auto">
             {photos.map((photo, index) => (
               <motion.div
                 key={index}
@@ -163,7 +163,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
+                className="relative aspect-square cursor-pointer overflow-hidden group"
                 onClick={() => setSelectedImage(index)}
               >
                 <img

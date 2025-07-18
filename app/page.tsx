@@ -92,7 +92,7 @@ export default function Home() {
       
       <DetailsSection events={eventsData} venue={venueData} />
       
-      <Timeline schedule={scheduleData} />
+      {/* <Timeline schedule={scheduleData} /> */}
       
       <RsvpForm />
       

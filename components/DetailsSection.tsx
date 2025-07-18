@@ -5,7 +5,9 @@ import { motion } from 'framer-motion'
 interface Event {
   title: string
   start: string
+  reception: string
   fee: string
+  note?: string
 }
 
 interface Venue {
@@ -59,17 +61,30 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
                 <p className="font-medium text-lg">{venue.name}</p>
                 <p className="text-sm mt-1">{venue.jpAddress}</p>
                 <p className="text-sm text-gray-500">{venue.enAddress}</p>
-                <a
-                  href={venue.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm inline-flex items-center mt-2"
-                >
-                  地図を見る
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href={venue.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline text-sm inline-flex items-center"
+                  >
+                    地図を見る
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://hotel-emanon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline text-sm inline-flex items-center"
+                  >
+                    公式サイト
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
             
@@ -134,6 +149,16 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <div>
+                      <p className="font-medium">受付時間</p>
+                      <p className="text-sm">{event.reception}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <svg className="w-5 h-5 mr-3 text-primary mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <div>
                       <p className="font-medium">開始時間</p>
                       <p className="text-sm">{timeString}〜</p>
                     </div>
@@ -146,6 +171,12 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
                       <p className="text-sm">{event.fee}</p>
                     </div>
                   </div>
+                  
+                  {event.note && (
+                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                      <p className="text-sm text-gray-600">{event.note}</p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             );

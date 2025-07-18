@@ -84,7 +84,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
 
         {/* モバイル用インスタグラム風UI */}
         {isClient && isMobile ? (
-          <div className="w-full bg-white border-t border-gray-200 -mx-4">
+          <div className="w-full bg-white border-t border-gray-200 max-w-md mx-auto">
             {/* ストーリーサークル */}
             <div className="flex space-x-4 p-4 bg-white border-b border-gray-200 overflow-x-auto">
               {photos.slice(0, 4).map((photo, index) => (

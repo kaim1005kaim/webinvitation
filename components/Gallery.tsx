@@ -68,44 +68,23 @@ export default function Gallery({ photos, story }: GalleryProps) {
           <p className="text-lg text-gray-600">私たちのストーリー</p>
         </motion.div>
 
+        {story && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto mb-12 text-center"
+          >
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg md:text-lg text-sm px-4 md:px-0">
+              {story}
+            </p>
+          </motion.div>
+        )}
 
         {/* モバイル用インスタグラム風UI */}
         {isClient && isMobile ? (
           <div className="w-full bg-white border-t border-gray-200 max-w-md mx-auto">
-            {/* ストーリーサークル */}
-            <div className="flex space-x-4 p-4 bg-white border-b border-gray-200 overflow-x-auto">
-              {photos.slice(0, 4).map((photo, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center flex-shrink-0"
-                >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5 cursor-pointer relative"
-                       onClick={() => setSelectedImage(index)}>
-                    <div className="w-full h-full rounded-full bg-white p-0.5">
-                      <img
-                        src={photo.src}
-                        alt={photo.alt}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
-                    {index === 0 && (
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">
-                    {index === 0 ? 'You' : '私たち'}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
 
             {/* プロフィールヘッダー */}
             <motion.div
@@ -207,40 +186,6 @@ export default function Gallery({ photos, story }: GalleryProps) {
         ) : (
           /* デスクトップ用インスタグラム風UI */
           <div className="max-w-md mx-auto bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-            {/* ストーリーサークル */}
-            <div className="flex justify-center space-x-4 p-4 bg-white border-b border-gray-200">
-              {photos.slice(0, 4).map((photo, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center"
-                >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5 cursor-pointer relative"
-                       onClick={() => setSelectedImage(index)}>
-                    <div className="w-full h-full rounded-full bg-white p-0.5">
-                      <img
-                        src={photo.src}
-                        alt={photo.alt}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
-                    {index === 0 && (
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">
-                    {index === 0 ? 'You' : '私たち'}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
 
             {/* プロフィールヘッダー */}
             <motion.div

@@ -76,7 +76,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto mb-12 text-center"
           >
-            <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg">
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg md:text-lg text-sm px-4 md:px-0">
               {story}
             </p>
           </motion.div>

@@ -210,7 +210,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-gray-900">💕 Love Story</h3>
-                <p className="text-xs text-gray-500">Kai & Mizuki</p>
+                <p className="text-xs text-gray-500">Kanagawa</p>
               </div>
               <div className="flex-1"></div>
               <div className="text-gray-400">

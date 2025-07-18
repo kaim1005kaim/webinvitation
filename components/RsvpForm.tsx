@@ -21,11 +21,14 @@ export default function RsvpForm() {
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
       attendance: 'both' as const,
+      relation: 'groom' as const,
+      hasGuests: false,
       guests: 0
     }
   })
 
   const attendance = watch('attendance')
+  const hasGuests = watch('hasGuests')
 
   const onSubmit = async (data: RSVPFormData) => {
     setIsSubmitting(true)
@@ -166,6 +169,33 @@ export default function RsvpForm() {
                   </div>
                 </div>
 
+                {/* Relation */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    ご関係 <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex space-x-4">
+                    <label className="flex items-center">
+                      <input
+                        {...register('relation')}
+                        type="radio"
+                        value="groom"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>新郎側</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        {...register('relation')}
+                        type="radio"
+                        value="bride"
+                        className="mr-2 text-primary focus:ring-primary"
+                      />
+                      <span>新婦側</span>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -180,6 +210,23 @@ export default function RsvpForm() {
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  )}
+                </div>
+
+                {/* Name Romaji */}
+                <div>
+                  <label htmlFor="nameRomaji" className="block text-sm font-medium text-gray-700 mb-2">
+                    お名前（ローマ字） <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    {...register('nameRomaji')}
+                    type="text"
+                    id="nameRomaji"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Taro Yamada"
+                  />
+                  {errors.nameRomaji && (
+                    <p className="mt-1 text-sm text-red-600">{errors.nameRomaji.message}</p>
                   )}
                 </div>
 

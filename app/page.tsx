@@ -76,6 +76,26 @@ export default function Home() {
         src: '/images/photo4.png',
         alt: 'photo4',
         caption: 'photo4'
+      },
+      {
+        src: '/images/photo5.png',
+        alt: 'photo5',
+        caption: 'photo5'
+      },
+      {
+        src: '/images/photo6.png',
+        alt: 'photo6',
+        caption: 'photo6'
+      },
+      {
+        src: '/images/photo7.png',
+        alt: 'photo7',
+        caption: 'photo7'
+      },
+      {
+        src: '/images/photo8.png',
+        alt: 'photo8',
+        caption: 'photo8'
       }
     ]
   }

@@ -19,6 +19,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   useEffect(() => {
     setIsClient(true)
@@ -31,13 +32,25 @@ export default function Gallery({ photos, story }: GalleryProps) {
   }, [])
 
   useEffect(() => {
-    if (isMobile) {
+    if (isMobile && isPlaying) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % photos.length)
-      }, 4000) // 4秒ごとに切り替え
+      }, 6000) // 6秒ごとに切り替え
       return () => clearInterval(interval)
     }
-  }, [isMobile, photos.length])
+  }, [isMobile, photos.length, isPlaying])
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % photos.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + photos.length) % photos.length)
+  }
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying)
+  }
 
   return (
     <section className="section-padding bg-white">
@@ -72,7 +85,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
         {/* モバイル用スライドショー */}
         {isClient && isMobile ? (
           <div className="relative w-full max-w-md mx-auto">
-            <div className="relative aspect-square overflow-hidden rounded-2xl shadow-xl">
+            <div className="relative aspect-square overflow-hidden rounded-2xl shadow-xl bg-black">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -89,6 +102,42 @@ export default function Gallery({ photos, story }: GalleryProps) {
                   />
                 </motion.div>
               </AnimatePresence>
+              
+              {/* インスタ風コントロール */}
+              <div className="absolute inset-0 flex items-center justify-between px-4">
+                <button
+                  onClick={prevSlide}
+                  className="w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* 再生/一時停止ボタン */}
+              <button
+                onClick={togglePlayPause}
+                className="absolute bottom-4 right-4 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              >
+                {isPlaying ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                )}
+              </button>
             </div>
             
             {/* インジケーター */}

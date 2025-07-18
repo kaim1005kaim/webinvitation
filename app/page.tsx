@@ -96,6 +96,11 @@ export default function Home() {
         src: '/images/photo8.png',
         alt: 'photo8',
         caption: 'photo8'
+      },
+      {
+        src: '/images/photo9.png',
+        alt: 'photo9',
+        caption: 'photo9'
       }
     ]
   }

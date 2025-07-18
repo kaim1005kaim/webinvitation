@@ -14,9 +14,13 @@ export async function POST(request: NextRequest) {
       .from('rsvp')
       .insert({
         name: validatedData.name,
+        name_romaji: validatedData.nameRomaji,
+        relation: validatedData.relation,
         email: validatedData.email,
         attendance: validatedData.attendance,
+        has_guests: validatedData.hasGuests,
         guests: validatedData.guests,
+        guest_details: validatedData.guestDetails || null,
         allergy: validatedData.allergy || null,
         message: validatedData.message || null,
       })

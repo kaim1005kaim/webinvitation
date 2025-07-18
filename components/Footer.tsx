@@ -19,7 +19,10 @@ export default function Footer({ copyright }: FooterProps) {
             viewport={{ once: true }}
             className="border-t border-white/20 pt-8 text-white/60"
           >
-            <p>{copyright || '© 2024 Wedding Invitation. All rights reserved.'}</p>
+            <p className="mb-3 text-sm">
+              ご相談や不明点があればお気軽に新郎新婦にご連絡ください！
+            </p>
+            <p className="text-sm">{copyright || '© 2024 Wedding Invitation. All rights reserved.'}</p>
           </motion.div>
         </div>
       </div>

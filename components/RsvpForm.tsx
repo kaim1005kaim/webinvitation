@@ -250,20 +250,63 @@ export default function RsvpForm() {
                 {/* Guests (only show if attending) */}
                 {attendance !== 'absent' && (
                   <div>
-                    <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-2">
-                      同行者数
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      同行者
                     </label>
-                    <input
-                      {...register('guests', { valueAsNumber: true })}
-                      type="number"
-                      id="guests"
-                      min="0"
-                      max="5"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="0"
-                    />
-                    {errors.guests && (
-                      <p className="mt-1 text-sm text-red-600">{errors.guests.message}</p>
+                    <div className="flex space-x-4 mb-3">
+                      <label className="flex items-center">
+                        <input
+                          {...register('hasGuests')}
+                          type="radio"
+                          value="false"
+                          className="mr-2 text-primary focus:ring-primary"
+                        />
+                        <span>なし</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          {...register('hasGuests')}
+                          type="radio"
+                          value="true"
+                          className="mr-2 text-primary focus:ring-primary"
+                        />
+                        <span>あり</span>
+                      </label>
+                    </div>
+                    
+                    {hasGuests && (
+                      <>
+                        <div className="mb-3">
+                          <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-2">
+                            同行者数
+                          </label>
+                          <input
+                            {...register('guests', { valueAsNumber: true })}
+                            type="number"
+                            id="guests"
+                            min="1"
+                            max="5"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="1"
+                          />
+                          {errors.guests && (
+                            <p className="mt-1 text-sm text-red-600">{errors.guests.message}</p>
+                          )}
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="guestDetails" className="block text-sm font-medium text-gray-700 mb-2">
+                            同行者の詳細（お名前・続柄）
+                          </label>
+                          <textarea
+                            {...register('guestDetails')}
+                            id="guestDetails"
+                            rows={3}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="例：山田花子（妻）、山田一郎（息子）"
+                          />
+                        </div>
+                      </>
                     )}
                   </div>
                 )}

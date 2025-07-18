@@ -85,11 +85,11 @@ export default function Home() {
         bgImage={heroData.bgImage}
       />
       
+      <Gallery photos={galleryData.photos} story={galleryData.story} />
+      
       <DetailsSection events={eventsData} venue={venueData} />
       
       <Timeline schedule={scheduleData} />
-      
-      <Gallery photos={galleryData.photos} story={galleryData.story} />
       
       <RsvpForm />
       

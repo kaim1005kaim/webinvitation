@@ -44,7 +44,7 @@ export default function HeroSection({ names, date, bgImage }: HeroSectionProps) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="mb-6 text-5xl md:text-7xl font-serif text-shadow-lg">
+            <h1 className="mb-6 text-4xl md:text-5xl font-serif text-shadow-lg">
               {names}
             </h1>
           </motion.div>

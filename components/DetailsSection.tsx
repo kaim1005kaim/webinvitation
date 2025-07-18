@@ -74,7 +74,7 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
                     </svg>
                   </a>
                   <a
-                    href="https://hotel-emanon.com/"
+                    href="http://hotelemanon.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline text-sm inline-flex items-center"

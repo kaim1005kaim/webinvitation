@@ -68,6 +68,24 @@ export default function RsvpForm() {
           </h2>
         </motion.div>
 
+        {/* 期限の追加 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <div className="bg-red-50 border-2 border-red-400 rounded-lg p-4 max-w-md mx-auto">
+            <p className="text-red-700 font-bold text-lg">
+              ⚠️ ご回答期限：2025年10月31日（金）
+            </p>
+            <p className="text-red-600 text-sm mt-1">
+              恐れ入りますが、上記期限までにご回答をお願いいたします
+            </p>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

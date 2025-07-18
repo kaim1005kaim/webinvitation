@@ -35,7 +35,8 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
           <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4">
             Wedding Details
           </h2>
-          <p className="text-lg text-gray-600">詳細情報</p>
+          <p className="text-lg text-gray-600 mb-2">詳細情報</p>
+          <p className="text-2xl font-serif text-primary">2025年11月23日（日）</p>
         </motion.div>
 
         {/* Venue Information */}
@@ -84,6 +85,27 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
           </div>
         </motion.div>
 
+        {/* Map */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto mb-12"
+        >
+          <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg h-96">
+            <iframe 
+              src={`https://maps.google.com/maps?q=HOTEL+EMANON+東京都渋谷区南平台町7-1&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </motion.div>
+
         {/* Events */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {events.map((event, index) => {
@@ -118,9 +140,7 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
                   </div>
                   
                   <div className="flex items-start">
-                    <svg className="w-5 h-5 mr-3 text-primary mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
+                    <span className="text-2xl mr-3 text-primary mt-1 font-bold">¥</span>
                     <div>
                       <p className="font-medium">参加費</p>
                       <p className="text-sm">{event.fee}</p>

@@ -154,26 +154,86 @@ export default function Gallery({ photos, story }: GalleryProps) {
             </div>
           </div>
         ) : (
-          /* デスクトップ用グリッド（インスタグラム風） */
-          <div className="grid grid-cols-3 gap-1 max-w-lg mx-auto">
-            {photos.map((photo, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="relative aspect-square cursor-pointer overflow-hidden group"
-                onClick={() => setSelectedImage(index)}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              </motion.div>
-            ))}
+          /* デスクトップ用インスタグラム風UI */
+          <div className="max-w-md mx-auto">
+            {/* ストーリーサークル */}
+            <div className="flex justify-center space-x-4 mb-8">
+              {photos.slice(0, 4).map((photo, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5 cursor-pointer"
+                       onClick={() => setSelectedImage(index)}>
+                    <div className="w-full h-full rounded-full bg-white p-0.5">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">
+                    {index === 0 ? 'You' : 'Your name'}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* プロフィールヘッダー */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="flex items-center space-x-3 mb-6"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
+                <div className="w-full h-full rounded-full bg-white p-0.5">
+                  <img
+                    src={photos[0].src}
+                    alt={photos[0].alt}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900">Your name</h3>
+                <p className="text-xs text-gray-500">Location</p>
+              </div>
+              <div className="flex-1"></div>
+              <div className="text-gray-400">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+              </div>
+            </motion.div>
+
+            {/* グリッド */}
+            <div className="grid grid-cols-3 gap-1">
+              {photos.map((photo, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="relative aspect-square cursor-pointer overflow-hidden group"
+                  onClick={() => setSelectedImage(index)}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         )}
 

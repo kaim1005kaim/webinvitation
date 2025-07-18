@@ -25,7 +25,7 @@ interface DetailsSectionProps {
 
 export default function DetailsSection({ events, venue }: DetailsSectionProps) {
   return (
-    <section className="section-padding bg-white">
+    <section id="details" className="section-padding bg-white">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

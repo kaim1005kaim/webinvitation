@@ -53,7 +53,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
   }
 
   return (
-    <section className="section-padding bg-white">
+    <section id="story" className="section-padding bg-white">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -209,7 +209,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-900">💕 Love Story</h3>
+                <h3 className="text-sm font-semibold text-gray-900">Our Gallery</h3>
                 <p className="text-xs text-gray-500">Kanagawa</p>
               </div>
               <div className="flex-1"></div>
@@ -244,33 +244,48 @@ export default function Gallery({ photos, story }: GalleryProps) {
 
             {/* 下部ナビゲーションバー */}
             <div className="flex items-center justify-around py-3 bg-white border-t border-gray-200">
-              <div className="p-2">
+              <button 
+                className="p-2"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 <svg className="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
-              </div>
-              <div className="p-2">
+              </button>
+              <button 
+                className="p-2"
+                onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-              </div>
-              <div className="p-2">
+              </button>
+              <button 
+                className="p-2"
+                onClick={() => document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-              </div>
-              <div className="p-2 relative">
+              </button>
+              <button 
+                className="p-2 relative"
+                onClick={() => document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-              </div>
-              <div className="p-2 relative">
+              </button>
+              <button 
+                className="p-2 relative"
+                onClick={() => window.open('https://www.google.com/maps/search/おすすめの場所+神奈川', '_blank')}
+              >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-              </div>
+              </button>
             </div>
           </div>
         )}

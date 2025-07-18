@@ -37,8 +37,8 @@ export default function DetailsSection({ events, venue }: DetailsSectionProps) {
           <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4">
             Wedding Details
           </h2>
-          <p className="text-lg text-gray-600 mb-2">詳細情報</p>
-          <p className="text-2xl font-serif text-primary">2025年11月23日（日）</p>
+          <p className="text-lg text-gray-600 mb-8">詳細情報</p>
+          <p className="text-2xl font-serif text-primary mb-16">2025年11月23日（日）</p>
         </motion.div>
 
         {/* Venue Information */}

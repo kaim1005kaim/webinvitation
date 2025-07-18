@@ -68,19 +68,6 @@ export default function Gallery({ photos, story }: GalleryProps) {
           <p className="text-lg text-gray-600">私たちのストーリー</p>
         </motion.div>
 
-        {story && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto mb-12 text-center"
-          >
-            <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg md:text-lg text-sm px-4 md:px-0">
-              {story}
-            </p>
-          </motion.div>
-        )}
 
         {/* モバイル用インスタグラム風UI */}
         {isClient && isMobile ? (
@@ -208,7 +195,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
               </button>
               <button 
                 className="p-2 relative"
-                onClick={() => window.open('https://www.google.com/maps/search/おすすめの場所+神奈川', '_blank')}
+                onClick={() => window.open('http://hotelemanon.com/', '_blank')}
               >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -343,7 +330,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
               </button>
               <button 
                 className="p-2 relative"
-                onClick={() => window.open('https://www.google.com/maps/search/おすすめの場所+神奈川', '_blank')}
+                onClick={() => window.open('http://hotelemanon.com/', '_blank')}
               >
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

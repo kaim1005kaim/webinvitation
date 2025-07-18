@@ -256,7 +256,7 @@ export default function RsvpForm() {
                     <div className="flex space-x-4 mb-3">
                       <label className="flex items-center">
                         <input
-                          {...register('hasGuests')}
+                          {...register('hasGuests', { setValueAs: (value) => value === 'true' })}
                           type="radio"
                           value="false"
                           className="mr-2 text-primary focus:ring-primary"
@@ -265,7 +265,7 @@ export default function RsvpForm() {
                       </label>
                       <label className="flex items-center">
                         <input
-                          {...register('hasGuests')}
+                          {...register('hasGuests', { setValueAs: (value) => value === 'true' })}
                           type="radio"
                           value="true"
                           className="mr-2 text-primary focus:ring-primary"

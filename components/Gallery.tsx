@@ -155,9 +155,9 @@ export default function Gallery({ photos, story }: GalleryProps) {
           </div>
         ) : (
           /* デスクトップ用インスタグラム風UI */
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
             {/* ストーリーサークル */}
-            <div className="flex justify-center space-x-4 mb-8">
+            <div className="flex justify-center space-x-4 p-4 bg-white border-b border-gray-200">
               {photos.slice(0, 4).map((photo, index) => (
                 <motion.div
                   key={index}
@@ -167,7 +167,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
                   viewport={{ once: true }}
                   className="flex flex-col items-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5 cursor-pointer"
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5 cursor-pointer relative"
                        onClick={() => setSelectedImage(index)}>
                     <div className="w-full h-full rounded-full bg-white p-0.5">
                       <img
@@ -176,9 +176,16 @@ export default function Gallery({ photos, story }: GalleryProps) {
                         className="w-full h-full object-cover rounded-full"
                       />
                     </div>
+                    {index === 0 && (
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                    )}
                   </div>
                   <p className="text-xs text-gray-600 mt-1">
-                    {index === 0 ? 'You' : 'Your name'}
+                    {index === 0 ? 'You' : '私たち'}
                   </p>
                 </motion.div>
               ))}
@@ -190,7 +197,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="flex items-center space-x-3 mb-6"
+              className="flex items-center space-x-3 px-4 py-3 bg-white border-b border-gray-200"
             >
               <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
                 <div className="w-full h-full rounded-full bg-white p-0.5">
@@ -202,8 +209,8 @@ export default function Gallery({ photos, story }: GalleryProps) {
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-900">Your name</h3>
-                <p className="text-xs text-gray-500">Location</p>
+                <h3 className="text-sm font-semibold text-gray-900">💕 Love Story</h3>
+                <p className="text-xs text-gray-500">Kai & Mizuki</p>
               </div>
               <div className="flex-1"></div>
               <div className="text-gray-400">
@@ -214,7 +221,7 @@ export default function Gallery({ photos, story }: GalleryProps) {
             </motion.div>
 
             {/* グリッド */}
-            <div className="grid grid-cols-3 gap-1">
+            <div className="grid grid-cols-3 gap-0.5 p-0.5">
               {photos.map((photo, index) => (
                 <motion.div
                   key={index}
@@ -233,6 +240,37 @@ export default function Gallery({ photos, story }: GalleryProps) {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </motion.div>
               ))}
+            </div>
+
+            {/* 下部ナビゲーションバー */}
+            <div className="flex items-center justify-around py-3 bg-white border-t border-gray-200">
+              <div className="p-2">
+                <svg className="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+              </div>
+              <div className="p-2">
+                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <div className="p-2">
+                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+              <div className="p-2 relative">
+                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+              </div>
+              <div className="p-2 relative">
+                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+              </div>
             </div>
           </div>
         )}
